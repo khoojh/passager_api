@@ -1,0 +1,32 @@
+{
+  "name": "passager_api",
+  "version": "1.0.0",
+  "description": "API for passager",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khoojh/passager_api.git"
+  },
+  "keywords": [
+    "passager",
+    "api"
+  ],
+  "author": "Jing Hwan Khoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khoojh/passager_api/issues"
+  },
+  "homepage": "https://github.com/khoojh/passager_api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5",
+    "reload": "^2.3.0"
+  }
+}

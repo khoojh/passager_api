@@ -1,0 +1,34 @@
+{
+    "passages": [
+        {
+            "author": "Friedrich Nietzsche",
+            "book": "Beyond Good and Evil",
+            "id": 0,
+            "content": "Inasmuch as we are born, sworn, jealous friends of solitude, our own deepest, most midnightly, noon-likely solitude. This is the type of people we are, we free spirits! and perhaps you are something of this yourselves, you who are approaching? you new philosophers?"
+        },
+        {
+            "author": "Stephen King",
+            "book": "On Writing",
+            "id": 1,
+            "content": "It starts with this: put your desk in the corner, and every time you sit down there to write, remind yourself why it isn’t in the middle of the room. Life isn’t a support-system for art. It’s the other way around."
+        },
+        {
+            "author": "Stephen King",
+            "book": "Different Seasons: The Body",
+            "id": 2,
+            "content": "But five hundred million Red Chinese don't give a shit, right? The most important things are the hardest to say, because words diminish them. It's hard to make strangers care about the good things in your life."
+        },
+        {
+            "author": "Haruki Murakami",
+            "book": "Kafka On The Shore",
+            "id": 3,
+            "content": "The massive bank of thunderclouds crossed the city at a lethargic pace, letting loose a flurry of lightning bolts as if probing every nook and cranny for a long-lost morality, finally dwindling to a faint, angry echo from the eastern sky. And right then the violent rain came to a sudden halt, followed by an unearthly silence. Hoshino stood up and opened the window to let in some air. The storm clouds had vanished, the sky covered once more by a thin membane of pale clouds. All the buildings were wet, the moist cracks in their walls dark, like old people's veins. Water dripped off power lines and formed puddles on the ground. Birds flew out from where they'd sought shelter, chirping loudly as they vied for the bugs that were out themselves now that the storm had abated."
+        },
+        {
+            "author": "Haruki Murakami",
+            "book": "Kafka On The Shore",
+            "id": 4,
+            "content": "But this is something you have to figure out on your own. Nobody can help you. That's what love's all about, Kafka. You're the one having those wonderful feelings, but you have to go it alone as you wander through the dark. Your mind and body have to bear it all. All by yourself."
+        }
+    ]
+}
