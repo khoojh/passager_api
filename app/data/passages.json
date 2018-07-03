@@ -29,6 +29,24 @@
             "book": "Kafka On The Shore",
             "id": 4,
             "content": "But this is something you have to figure out on your own. Nobody can help you. That's what love's all about, Kafka. You're the one having those wonderful feelings, but you have to go it alone as you wander through the dark. Your mind and body have to bear it all. All by yourself."
+        },
+        {
+            "author": "Stephen King",
+            "book": "Different Seasons: The Body",
+            "id": 5,
+            "content": "It happens. Friends come in and out of your life like busboys in a restaurant, did you ever notice that? But when I think of that dream, the corpses under the water pulling implacably at my legs, it seems right that it should be that way. Some people drown, that's all. It's not fair, but it happens. Some people drown."
+        },
+        {
+            "author": "David Foster Wallace",
+            "book": "A Supposedly Fun Thing I'll Never Do Again: E Unibus Pluram",
+            "id": 6,
+            "content": "Fiction writers as a species tend to be oglers. They tend to lurk and to stare. They are born watchers. They are viewers. They are the ones on the subway about whose nonchalant stare there is something creepy, somehow. Almost predatory. This is because human situations are writers' food. Fiction writers watch other humans sort of the way gapers slow down for car wrecks: they covet a vision of themselves as witnesses."
+        },
+        {
+            "author": "Haruki Murakami",
+            "book": "Kafka On The Shore",
+            "id": 7,
+            "content": "\"Every one of us is losing something precious to us,\", he says after the phone stops ringing. \"Lost opportunities, lost possibilities, feelings we can never get back again. That's part of what it means to be alive. But inside our heads—at least that's where I imagine it—there's a little room where we store those memories. A room like the stacks in this library. And to understand the workings of our own heart we have to keep on making new reference cards. We have to dust things off every once in a while, let in fresh air, change the water in the flower vases. In other words, you'll live forever in your own private library.\""
         }
     ]
 }
