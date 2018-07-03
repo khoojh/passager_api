@@ -2,12 +2,14 @@ var express = require('express');
 var app = express();
 var reload = require('reload');
 var dataFile = require('./data/passages.json')
-var bodyParser =  bodyPars require('body-parser');
+var bodyParser = require('body-parser');
+var cors = require('cors');
 
 
 app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.route('/api/passages').get((req, res) => {
     res.send(dataFile.passages);
