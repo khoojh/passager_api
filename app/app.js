@@ -20,7 +20,9 @@ app.route('/api/passages/:passageid').get((req, res) => {
 });
 
 app.route('/api/passages').post((req, res) => {
+    console.log("REQBODY", req.body)
     //HANDLE POST
+    //Assign id for passage and return
     res.send(201, req.body);
 });
 
