@@ -4,6 +4,9 @@ var reload = require('reload');
 var dataFile = require('./data/passages.json')
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var fs = require('fs');
+
+var samplePassages = require('./data/samplePassages.json')
 
 
 app.set('port', process.env.PORT || 3000);
@@ -12,22 +15,45 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.route('/api/passages').get((req, res) => {
-    res.send(dataFile.passages);
+    res.send(samplePassages.passages);
 });
 
 app.route('/api/passages/:passageid').get((req, res) => {
-    res.send(dataFile.passages[req.params.passageid]);
+    res.send(samplePassages.passages[req.params.passageid]);
 });
 
 app.route('/api/passages').post((req, res) => {
-    console.log("REQBODY", req.body)
-    //HANDLE POST
-    //Assign id for passage and return
-    res.send(201, req.body);
+    let newPassage = req.body;
+    newPassage.id = samplePassages.passages.length;
+    samplePassages.passages.push(newPassage);
+    fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(201).send(newPassage);
+        }
+    });
 });
 
 app.route('/api/passages/:passageid').patch((req, res) => {
-    //HANDLE PATCH
+    // let newPassages = [];
+    // let newPassage;
+    // samplePassages.passages.forEach((passage) => {
+    //     if (passage.id === req.params.passageid) {
+    //         newPassage = req.body;
+    //         newPassage.id = passage.id;
+    //         newPassages.push(newPassage);
+    //     } else {
+    //         newPassages.push(passage);
+    //     }
+    // })
+    // fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
+    //     if (err) {
+    //         res.status(500).send(err);
+    //     } else {
+    //         res.status(200).send(newPassage);
+    //     }
+    // });
     res.send(200, req.body);
 });
 
