@@ -36,30 +36,43 @@ app.route('/api/passages').post((req, res) => {
 });
 
 app.route('/api/passages/:passageid').patch((req, res) => {
-    // let newPassages = [];
-    // let newPassage;
-    // samplePassages.passages.forEach((passage) => {
-    //     if (passage.id === req.params.passageid) {
-    //         newPassage = req.body;
-    //         newPassage.id = passage.id;
-    //         newPassages.push(newPassage);
-    //     } else {
-    //         newPassages.push(passage);
-    //     }
-    // })
-    // fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
-    //     if (err) {
-    //         res.status(500).send(err);
-    //     } else {
-    //         res.status(200).send(newPassage);
-    //     }
-    // });
-    res.send(200, req.body);
+    let newPassages = [];
+    let newPassage;
+    samplePassages.passages.forEach((passage) => {
+        if (passage.id === parseInt(req.params.passageid)) {
+            newPassage = req.body;
+            newPassage.id = passage.id;
+            newPassages.push(newPassage);
+        } else {
+            newPassages.push(passage);
+        }
+    });
+    fs.writeFile('./app/data/samplePassages.json', JSON.stringify({"passages":newPassages}), 'utf8', (err)=>{
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(200).send(newPassage);
+        }
+    });
 });
 
 app.route('/api/passages/:passageid').delete((req, res) => {
-    //HANDLE DELETE
-    res.sendStatus(204);
+    let newPassages = [];
+    let deletedPassage;
+    samplePassages.passages.forEach((passage) => {
+        if (passage.id !== parseInt(req.params.passageid)) {
+            newPassages.push(passage);
+        } else {
+            deletedPassage = passage;
+        }
+    });
+    fs.writeFile('./app/data/samplePassages.json', JSON.stringify({"passages":newPassages}), 'utf8', (err)=>{
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.status(200).send(deletedPassage);
+        }
+    });
 });
 
 
