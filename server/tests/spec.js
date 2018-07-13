@@ -1,11 +1,12 @@
 var app = require('../server.js');
+// var app = require('../../index.js');
 var request = require('supertest');
 var chai_expect = require('chai').expect;
 
 describe('[PASSAGES]', () => {
     it('should get all passages', (done) => {
         request(app)
-            .get('/passages')
+            .get('/api/passages')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
@@ -22,13 +23,14 @@ describe('[PASSAGES]', () => {
             content: "But five hundred million Red Chinese don't give a shit, right? The most important things are the hardest to say, because words diminish them. It's hard to make strangers care about the good things in your life."
         };
         request(app)
-            .post('/passages')
+            .post('/api/passages')
             .send(passage)
             .set('Accept', 'application/json')
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .get('/passages/' + passage.id)
+                    .get('/api/passages/' + passage.id)
+                    .expect(200)
                     .end((err, resp) => {
                         var returnedPassage = resp.body;
                         returnedPassage.id = passage.id;
@@ -45,7 +47,7 @@ describe('[PASSAGES]', () => {
             content: "But five hundred million Red Chinese don't give a shit, right? The most important things are the hardest to say, because words diminish them. It's hard to make strangers care about the good things in your life."
         };
         request(app)
-            .post('/passages')
+            .post('/api/passages')
             .send(passage)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -65,13 +67,13 @@ describe('[PASSAGES]', () => {
             content: "But five hundred million Red Chinese don't give a shit, right? The most important things are the hardest to say, because words diminish them. It's hard to make strangers care about the good things in your life."
         };
         request(app)
-            .post('/passages')
+            .post('/api/passages')
             .send(passage)
             .set('Accept', 'application/json')
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .delete('/passages/' + passage.id)
+                    .delete('/api/passages/' + passage.id)
                     .end((err, resp) => {
                         var deletedPassage = resp.body;
                         chai_expect(deletedPassage).to.eql(passage);
@@ -87,13 +89,13 @@ describe('[PASSAGES]', () => {
             content: "But five hundred million Red Chinese don't give a shit, right? The most important things are the hardest to say, because words diminish them. It's hard to make strangers care about the good things in your life."
         };
         request(app)
-            .post('/passages')
+            .post('/api/passages')
             .send(passage)
             .set('Accept', 'application/json')
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .patch('/passages/' + passage.id)
+                    .patch('/api/passages/' + passage.id)
                     .send({
                         author: "Richard Bachman"
                     })

@@ -1,8 +1,10 @@
-var express = require('express');
-var passageRouter = express.Router();
+var router = require('express').Router();
+var logger = require('../../util/logger');
+
 var fs = require('fs');
 var _ = require('lodash');
-var samplePassages = require('../data/samplePassages.json');
+var samplePassages = require('../../data/samplePassages.json');
+var writePath = './server/data/samplePassages.json';
 
 
 var updateID = (req, res, next) => {
@@ -11,7 +13,7 @@ var updateID = (req, res, next) => {
     next();
 }
 
-passageRouter.route('/')
+router.route('/')
     .get((req, res) => {
         res.status(200).send(samplePassages.passages);
     })
@@ -19,7 +21,7 @@ passageRouter.route('/')
         let newPassage = req.body;
         // newPassage.id = samplePassages.passages.length; //Modify this to the id of the last element + 1
         samplePassages.passages.push(newPassage);
-        fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
+        fs.writeFile(writePath, JSON.stringify(samplePassages), 'utf8', (err)=>{
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -28,11 +30,11 @@ passageRouter.route('/')
         });
     });
 
-passageRouter.route('/:passageid')
+router.route('/:passageid')
     .get((req, res) => {
         var passage = _.find(samplePassages.passages, {id: parseInt(req.params.passageid)});
         if (passage) {
-            res.send(passage);
+            res.status(200).send(passage);
         } else {
             res.status(404).send("Passage not found.");
         }
@@ -48,7 +50,7 @@ passageRouter.route('/:passageid')
         } else {
             var updatedPassage = _.assign(samplePassages.passages[index], update);
         }
-        fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
+        fs.writeFile(writePath, JSON.stringify(samplePassages), 'utf8', (err)=>{
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -65,7 +67,7 @@ passageRouter.route('/:passageid')
             samplePassages.passages.splice(index, 1);
         }
 
-        fs.writeFile('./app/data/samplePassages.json', JSON.stringify(samplePassages), 'utf8', (err)=>{
+        fs.writeFile(writePath, JSON.stringify(samplePassages), 'utf8', (err)=>{
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -74,4 +76,5 @@ passageRouter.route('/:passageid')
         });
     });
 
-module.exports = passageRouter;
+
+module.exports = router;
