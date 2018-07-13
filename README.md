@@ -19,6 +19,10 @@ API for passager
 ### Start & watch
 
     $ npm start
+    
+### Test
+
+    $ npm test
 
 ## Built With
 
