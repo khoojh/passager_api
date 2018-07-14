@@ -7,9 +7,10 @@ var samplePassages = require('../../data/samplePassages.json');
 var writePath = './server/data/samplePassages.json';
 
 
-var updateID = (req, res, next) => {
+var updateIDandDate = (req, res, next) => {
     //need to improve on creating ID
     req.body.id = samplePassages.passages.length + 1;
+    req.body.dateCreated = new Date();
     next();
 }
 
@@ -17,9 +18,8 @@ router.route('/')
     .get((req, res) => {
         res.status(200).send(samplePassages.passages);
     })
-    .post(updateID, (req, res) => {
+    .post(updateIDandDate, (req, res) => {
         let newPassage = req.body;
-        // newPassage.id = samplePassages.passages.length; //Modify this to the id of the last element + 1
         samplePassages.passages.push(newPassage);
         fs.writeFile(writePath, JSON.stringify(samplePassages), 'utf8', (err)=>{
             if (err) {

@@ -34,6 +34,7 @@ describe('[PASSAGES]', () => {
                     .end((err, resp) => {
                         var returnedPassage = resp.body;
                         returnedPassage.id = passage.id;
+                        passage.dateCreated = returnedPassage.dateCreated;
                         chai_expect(returnedPassage).to.eql(passage);
                         done();
                     });
@@ -55,6 +56,7 @@ describe('[PASSAGES]', () => {
             .end((err, resp) => {
                 var returnedPassage = resp.body;
                 passage.id = returnedPassage.id;
+                passage.dateCreated = returnedPassage.dateCreated;
                 chai_expect(returnedPassage).to.eql(passage);
                 done();
             });
