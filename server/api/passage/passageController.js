@@ -1,10 +1,10 @@
 var Passage = require('./passageModel');
 var _ = require('lodash');
 
-exports.params = (res, req, next, id) => {
+exports.params = (req, res, next, id) => {
     Passage.findById(id)
-        .populate('author book')
-        .exec()
+        // .populate('author book')
+        // .exec()
         .then((passage) => {
             if (!passage) {
                 next(new Error("No passage with that id"));
@@ -19,48 +19,48 @@ exports.params = (res, req, next, id) => {
 
 exports.get = (req, res, next) => {
     Passage.find({})
-        .populate('author book')
-        .exec()
+        // .populate('author book')
+        // .exec()
         .then((passages) => {
-            res.json(passages);
+            res.status(200).send(passages);
         }, (err) => {
             next(err);
         });
 };
 
-exports.getOne = (res, req, next) => {
-    res.json(req.passage);
+exports.getOne = (req, res, next) => {
+    res.status(201).send(req.passage);
 };
 
-exports.put = (res, req, next) => {
+exports.put = (req, res, next) => {
     var passage = req.passage;
     var update = req.body;
     _.merge(passage, update);
-    passage.save((err, saved => {
+    passage.save((err, saved) => {
         if (err) {
             next(err);
         } else {
-            res.json(saved);
+            res.status(200).send(saved);
         }
     });
 };
 
-exports.post = (res, req, next) => {
+exports.post = (req, res, next) => {
     var newPassage = req.body;
     Passage.create(newPassage)
         .then((passage) => {
-            res.json(passage);
+            res.status(200).send(passage);
         }, (err) => {
             next(err);
         });
 };
 
-exports.delete = (res, req, next) => {
+exports.delete = (req, res, next) => {
     req.passage.remove((err, removed) => {
         if (err) {
             next(err);
         } else {
-            res.json(removed);
+            res.status(200).send(removed);
         }
     });
 };

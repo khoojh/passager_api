@@ -1,5 +1,4 @@
 var app = require('../server.js');
-// var app = require('../../index.js');
 var request = require('supertest');
 var chai_expect = require('chai').expect;
 
@@ -29,13 +28,13 @@ describe('[PASSAGES]', () => {
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .get('/api/passages/' + passage.id)
+                    .get('/api/passages/' + passage._id)
                     .expect(200)
                     .end((err, resp) => {
                         var returnedPassage = resp.body;
-                        returnedPassage.id = passage.id;
-                        passage.dateCreated = returnedPassage.dateCreated;
-                        chai_expect(returnedPassage).to.eql(passage);
+                        // returnedPassage.id = passage.id;
+                        // passage.dateCreated = returnedPassage.dateCreated;
+                        chai_expect(returnedPassage.author).to.be.equal(passage.author);
                         done();
                     });
             });
@@ -55,9 +54,12 @@ describe('[PASSAGES]', () => {
             .expect(201)
             .end((err, resp) => {
                 var returnedPassage = resp.body;
-                passage.id = returnedPassage.id;
-                passage.dateCreated = returnedPassage.dateCreated;
-                chai_expect(returnedPassage).to.eql(passage);
+                // passage.id = returnedPassage.id;
+                // passage.dateCreated = returnedPassage.dateCreated;
+                // chai_expect(returnedPassage).to.eql(passage);
+                chai_expect(returnedPassage.author).to.be.equal(passage.author);
+                chai_expect(returnedPassage.book).to.be.equal(passage.book);
+                chai_expect(returnedPassage.content).to.be.equal(passage.content);
                 done();
             });
     });
@@ -75,10 +77,13 @@ describe('[PASSAGES]', () => {
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .delete('/api/passages/' + passage.id)
+                    .delete('/api/passages/' + passage._id)
                     .end((err, resp) => {
                         var deletedPassage = resp.body;
-                        chai_expect(deletedPassage).to.eql(passage);
+                        // chai_expect(deletedPassage).to.eql(passage);
+                        chai_expect(deletedPassage.author).to.be.equal(passage.author);
+                        chai_expect(deletedPassage.book).to.be.equal(passage.book);
+                        chai_expect(deletedPassage.content).to.be.equal(passage.content);
                         done();
                     });
             });
@@ -97,7 +102,7 @@ describe('[PASSAGES]', () => {
             .end((err, resp) => {
                 var passage = resp.body;
                 request(app)
-                    .patch('/api/passages/' + passage.id)
+                    .put('/api/passages/' + passage._id)
                     .send({
                         author: "Richard Bachman"
                     })

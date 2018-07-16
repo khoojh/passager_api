@@ -1,7 +1,7 @@
 var User = require('./userModel');
 var _ = require('lodash');
 
-exports.params = (res, req, next, id) => {
+exports.params = (req, res, next, id) => {
     User.findById(id)
         .then((user) => {
             if (!user) {
@@ -15,7 +15,7 @@ exports.params = (res, req, next, id) => {
         });
 };
 
-exports.get = (res, req, next) => {
+exports.get = (req, res, next) => {
     User.find({})
         .then((users) => {
             res.json(users);
@@ -24,15 +24,15 @@ exports.get = (res, req, next) => {
         });
 };
 
-exports.getOne = (res, req, next) => {
+exports.getOne = (req, res, next) => {
     res.json(req.user);
 };
 
-exports.put = (res, req, next) => {
+exports.put = (req, res, next) => {
     var user = req.user;
     var update = req.body;
     _.merge(user, update);
-    user.save((err, saved => {
+    user.save((err, saved) => {
         if (err) {
             next(err);
         } else {
@@ -41,7 +41,7 @@ exports.put = (res, req, next) => {
     });
 };
 
-exports.post = (res, req, next) => {
+exports.post = (req, res, next) => {
     var newUser = req.body;
     User.create(newUser)
         .then((user) => {
@@ -52,7 +52,7 @@ exports.post = (res, req, next) => {
 }
 
 
-exports.delete = (res, req, next) => {
+exports.delete = (req, res, next) => {
     req.user.remove((err, removed) => {
         if (err) {
             next(err);

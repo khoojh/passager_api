@@ -1,12 +1,7 @@
 var router = require('express').Router();
-var logger = require('../../util/logger');
+var controller = require('./bookController');
+var createRoutes = require('../../util/createRoutes');
 
-
-router.route('/')
-    .get((req, res) => {
-        logger.log('Hey from book!');
-        res.send({ok: true});
-    })
-
+createRoutes(controller, router);
 
 module.exports = router;
