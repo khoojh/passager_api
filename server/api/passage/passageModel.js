@@ -15,7 +15,8 @@ var Schema = mongoose.Schema;
 //     content: {
 //         type: String,
 //         required: true
-//     },
+//     }
+//     ,
 //     dateCreated: {
 //         type: Date,
 //         required: true
